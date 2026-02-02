@@ -1,0 +1,16 @@
+/* FULL PAGE LAYER */
+.ufo-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* UFO */
+.ufo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  filter: drop-shadow(0 0 12px rgba(0, 255, 255, 0.6));
+}

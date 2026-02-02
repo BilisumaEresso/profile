@@ -1,0 +1,99 @@
+/* 🌌 ROOT BACKGROUND */
+.galaxy-bg {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at bottom, #0b0d1a 0%, #000 70%);
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ⭐ STARS */
+.stars {
+  position: absolute;
+  inset: 0;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: star-twinkle 5s infinite alternate;
+}
+
+@keyframes star-twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+    box-shadow: 0 0 6px white;
+  }
+}
+
+/* 🌠 SHOOTING STARS */
+.shooting-star {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 140px;
+  height: 2px;
+  background: linear-gradient(90deg, white, transparent);
+  opacity: 0;
+  transform: rotate(45deg);
+}
+
+/* individual paths */
+.star-1 {
+  animation: shoot-1 8s linear infinite;
+}
+
+.star-2 {
+  animation: shoot-2 12s linear infinite;
+  animation-delay: 4s;
+}
+
+.star-3 {
+  animation: shoot-3 10s linear infinite;
+  animation-delay: 7s;
+}
+
+@keyframes shoot-1 {
+  0% {
+    transform: rotate(45deg) translate(-200px, -200px);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  100% {
+    transform: rotate(45deg) translate(1400px, 1400px);
+    opacity: 0;
+  }
+}
+
+@keyframes shoot-2 {
+  0% {
+    transform: rotate(45deg) translate(-300px, -300px);
+    opacity: 0;
+  }
+  10% { opacity: 0.8; }
+  100% {
+    transform: rotate(45deg) translate(1600px, 1600px);
+    opacity: 0;
+  }
+}
+
+@keyframes shoot-3 {
+  0% {
+    transform: rotate(45deg) translate(-150px, -150px);
+    opacity: 0;
+  }
+  10% { opacity: 0.6; }
+  100% {
+    transform: rotate(45deg) translate(1200px, 1200px);
+    opacity: 0;
+  }
+}

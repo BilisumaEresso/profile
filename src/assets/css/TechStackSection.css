@@ -1,0 +1,700 @@
+/* TechStackSection.css - Responsive with Mobile/Tablet */
+
+/* =========================
+   BASE STYLES
+========================= */
+.tech-section {
+  min-height: 100vh;
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.tech-section h2 {
+  font-size: 3rem;
+  margin-bottom: 0.8rem;
+  background: linear-gradient(90deg, #ffd700, #ff9f0a, #ff6b00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+}
+
+.tech-section p {
+  color: #94a3b8;
+  margin-bottom: 60px;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =========================
+   SOLAR SYSTEM CONTAINER
+========================= */
+.solar-system-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 800px;
+  margin: 0 auto;
+}
+
+/* =========================
+   🌠 SHOOTING STARS
+========================= */
+.shooting-star {
+  position: absolute;
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.877),
+    rgba(255, 255, 255, 0.667),
+    transparent
+  );
+  border-radius: 999px;
+  filter: blur(1px);
+  animation: shooting-star-fly 8s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+  transform: rotate(45deg);
+  transform-origin: left center;
+}
+
+.shooting-star::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 
+    0 0 15px white,
+    0 0 30px rgba(255, 255, 255, 0.7),
+    0 0 45px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes shooting-star-fly {
+  0% {
+    transform: rotate(45deg) translateX(-200px) translateY(-200px);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  15% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(45deg) translateX(calc(100vw + 200px)) translateY(calc(100vh + 200px));
+    opacity: 0;
+  }
+}
+
+/* =========================
+   ☀️ SUN
+========================= */
+.sun {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #ffd700 0%,
+    #ff8c00 30%,
+    #ff4500 60%,
+    transparent 80%
+  );
+  border: none;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: visible;
+  padding: 0;
+}
+
+.sun-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 215, 0, 0.3) 0%,
+    rgba(255, 140, 0, 0.2) 30%,
+    rgba(255, 69, 0, 0.1) 60%,
+    transparent 80%
+  );
+  animation: sun-pulse 3s infinite ease-in-out;
+  z-index: 4;
+}
+
+.sun-core {
+  position: absolute;
+  inset: 15px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #fff 0%,
+    #ffd700 50%,
+    transparent 80%
+  );
+  filter: blur(5px);
+  z-index: 5;
+}
+
+.sun:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.sun:hover .sun-glow {
+  animation: sun-pulse-fast 1s infinite ease-in-out;
+}
+
+@keyframes sun-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes sun-pulse-fast {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* =========================
+   🪐 ORBITS
+========================= */
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.orbit-path {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.orbit-1 .orbit-path {
+  width: 220px;
+  height: 220px;
+  border-color: rgba(248, 197, 87, 0.642);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
+}
+
+.orbit-2 .orbit-path {
+  width: 360px;
+  height: 360px;
+  border-color: rgba(152, 154, 61, 0.587);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.1);
+}
+
+.orbit-3 .orbit-path {
+  width: 520px;
+  height: 520px;
+  border-color: rgba(40, 187, 194, 0.514);
+  box-shadow: 0 0 20px rgba(234, 179, 8, 0.1);
+}
+
+.orbit-4 .orbit-path {
+  width: 680px;
+  height: 680px;
+  border-color: rgba(61, 86, 247, 0.495);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.1);
+}
+
+/* =========================
+   🪐 PLANETS
+========================= */
+.planet-container {
+  position: absolute;
+  top: 48%;
+  left: 47%;
+  pointer-events: auto;
+  transform-origin: center;
+  z-index: 20;
+}
+
+.planet {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  transform-origin: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(2px);
+}
+
+.planet:hover {
+  transform: scale(1.8);
+  z-index: 100;
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.planet-ring {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 2px solid;
+  opacity: 0.3;
+  animation: ring-rotate 10s linear infinite;
+}
+
+.planet:hover .planet-ring {
+  opacity: 0.7;
+  animation: ring-rotate-fast 5s linear infinite;
+}
+
+@keyframes ring-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ring-rotate-fast {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.planet-icon {
+  width: 24px;
+  height: 24px;
+  fill: white;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.5));
+  transition: transform 0.4s ease;
+}
+
+.planet:hover .planet-icon {
+  transform: rotate(360deg) scale(1.2);
+}
+
+/* =========================
+   💬 PLANET TOOLTIP
+========================= */
+.planet-tooltip {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px) scale(0.95);
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 16px;
+  border-radius: 12px;
+  min-width: 200px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    0 0 60px rgba(255, 255, 255, 0.05);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.planet-container:hover .planet-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.tooltip-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tooltip-svg {
+  width: 18px;
+  height: 18px;
+  fill: white;
+}
+
+.tooltip-header h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+}
+
+.planet-tooltip p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  text-align: left;
+  line-height: 1.5;
+}
+
+/* =========================
+   🌠 DECORATIVE ELEMENTS
+========================= */
+.comet {
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(56, 189, 248, 0.8),
+    transparent
+  );
+  transform: rotate(-30deg);
+  filter: blur(1px);
+  animation: comet-fly 25s linear infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@keyframes comet-fly {
+  0% {
+    transform: translateX(100px) rotate(-30deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100vw) rotate(-30deg);
+    opacity: 0;
+  }
+}
+
+.asteroid-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =========================
+   📱 TABLET RESPONSIVE (768px - 1024px)
+========================= */
+@media (max-width: 1024px) {
+  .solar-system-container {
+    max-width: 800px;
+    height: 700px;
+  }
+  
+  .sun {
+    width: 85px;
+    height: 85px;
+  }
+  
+  .orbit-1 .orbit-path {
+    width: 190px;
+    height: 190px;
+  }
+  
+  .orbit-2 .orbit-path {
+    width: 310px;
+    height: 310px;
+  }
+  
+  .orbit-3 .orbit-path {
+    width: 440px;
+    height: 440px;
+  }
+  
+  .orbit-4 .orbit-path {
+    width: 570px;
+    height: 570px;
+  }
+  
+  .planet {
+    width: 42px;
+    height: 42px;
+  }
+  
+  .planet:hover {
+    transform: scale(1.6);
+  }
+  
+  .planet-tooltip {
+    min-width: 180px;
+    padding: 14px;
+    top: -110px;
+  }
+  
+  .tooltip-header h4 {
+    font-size: 1rem;
+  }
+  
+  .planet-tooltip p {
+    font-size: 0.85rem;
+  }
+}
+
+/* =========================
+   📱 MOBILE RESPONSIVE (480px - 767px)
+========================= */
+@media (max-width: 767px) {
+  .tech-section {
+    padding: 60px 15px;
+    min-height: auto;
+  }
+  
+  .tech-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .tech-section p {
+    font-size: 1rem;
+    margin-bottom: 40px;
+    max-width: 400px;
+  }
+  
+  .solar-system-container {
+    height: 600px;
+    max-width: 550px;
+  }
+  
+  .sun {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .orbit-1 .orbit-path {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .orbit-2 .orbit-path {
+    width: 240px;
+    height: 240px;
+  }
+  
+  .orbit-3 .orbit-path {
+    width: 330px;
+    height: 330px;
+  }
+  
+  .orbit-4 .orbit-path {
+    width: 420px;
+    height: 420px;
+  }
+  
+  .planet {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .planet-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .planet:hover {
+    transform: scale(1.4);
+  }
+  
+  .planet-tooltip {
+    min-width: 160px;
+    padding: 12px;
+    top: -100px;
+  }
+  
+  .tooltip-header {
+    gap: 10px;
+  }
+  
+  .tooltip-icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .tooltip-svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .tooltip-header h4 {
+    font-size: 0.95rem;
+  }
+  
+  .planet-tooltip p {
+    font-size: 0.8rem;
+  }
+  
+  .shooting-star {
+    width: 150px;
+    height: 1.5px;
+  }
+  
+  .shooting-star::before {
+    width: 5px;
+    height: 5px;
+  }
+}
+
+/* =========================
+   📱 SMALL MOBILE RESPONSIVE (up to 479px)
+========================= */
+@media (max-width: 479px) {
+  .tech-section {
+    padding: 40px 12px;
+  }
+  
+  .tech-section h2 {
+    font-size: 1.8rem;
+  }
+  
+  .tech-section p {
+    font-size: 0.9rem;
+    max-width: 300px;
+  }
+  
+  .solar-system-container {
+    height: 500px;
+    max-width: 400px;
+  }
+  
+  .sun {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .sun-core {
+    inset: 10px;
+  }
+  
+  .orbit-1 .orbit-path {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .orbit-2 .orbit-path {
+    width: 190px;
+    height: 190px;
+  }
+  
+  .orbit-3 .orbit-path {
+    width: 260px;
+    height: 260px;
+  }
+  
+  .orbit-4 .orbit-path {
+    width: 330px;
+    height: 330px;
+  }
+  
+  .planet {
+    width: 34px;
+    height: 34px;
+    border-width: 1.5px;
+  }
+  
+  .planet-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .planet:hover {
+    transform: scale(1.3);
+  }
+  
+  .planet-ring {
+    inset: -8px;
+    border-width: 1.5px;
+  }
+  
+  .planet-tooltip {
+    min-width: 140px;
+    padding: 10px;
+    top: -90px;
+    border-radius: 10px;
+  }
+  
+  .tooltip-header {
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .tooltip-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .tooltip-svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .tooltip-header h4 {
+    font-size: 0.9rem;
+  }
+  
+  .planet-tooltip p {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+  
+  .shooting-star {
+    width: 120px;
+    height: 1px;
+  }
+  
+  .shooting-star::before {
+    width: 4px;
+    height: 4px;
+  }
+}
