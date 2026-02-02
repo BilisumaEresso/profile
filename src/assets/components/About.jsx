@@ -105,55 +105,69 @@ const AboutPage = () => {
       id: 1,
       title: "E-Commerce Platform",
       description:
-        "A full-stack e-commerce solution with cart, checkout, and payment integration.",
-      date: "2024",
+        "A complete online shopping solution featuring user authentication, shopping cart, payment integration, and admin dashboard for managing products and orders.",
+      date: "2025",
       languages: ["React", "Node.js", "MongoDB", "Express"],
       skills: [
-        "Full Stack",
-        "API Design",
-        "Authentication",
-        "Payment Processing",
+        "Full-Stack Development",
+        "REST API",
+        "Payment Gateway",
+        "User Authentication",
+        "Admin Dashboard",
       ],
-      image: "/images/ecommerce.png", // You'll replace these with actual image paths
+      image: "/images/ecommerce.png",
       githubUrl: "https://github.com/bilisumaeresso/ecommerce-backend",
       liveUrl: "",
     },
     {
       id: 2,
-      title: "E-Learning",
+      title: "E-Learning Platform",
       description:
-        "WebSocket based real-time messaging application with user authentication.",
-      date: "2023",
+        "Interactive learning platform with course management, progress tracking, quiz system, and video lessons. Designed for both students and instructors.",
+      date: "2025",
       languages: ["HTML", "CSS", "JavaScript"],
-      skills: ["Real-time", "WebSockets", "State Management", "Security"],
+      skills: [
+        "Responsive Design",
+        "Interactive UI",
+        "Course Management",
+        "Progress Tracking",
+        "Quiz System",
+      ],
       image: "/images/elearn.jpg",
       githubUrl: "https://github.com/bilisumaeresso/e-learning",
       liveUrl: "",
     },
     {
       id: 3,
-      title: "Task and Todo Management",
+      title: "Task Management System",
       description:
-        "Interactive dashboard for project management with drag-and-drop functionality.",
+        "Full-stack task and project management application with drag-and-drop functionality, team collaboration features, deadlines, and priority tracking.",
       date: "2024",
       languages: ["React", "Node.js", "MongoDb", "RESTful API"],
-      skills: ["UI/UX", "Task Management", "API", "Responsive Design"],
+      skills: [
+        "Task Management",
+        "Drag & Drop",
+        "Team Collaboration",
+        "Real-time Updates",
+        "Priority System",
+      ],
       image: "/images/todo.jpg",
       githubUrl: "https://github.com/bilisumaeresso/react-blog-app",
-      liveUrl: "https://task-demo.example.com",
+      liveUrl: "",
     },
     {
       id: 4,
-      title: "RE Construction | Frontend",
+      title: "Construction Company Website",
       description:
-        "Weather application with location-based forecasts and interactive maps.",
-      date: "2023",
-      languages: ["React", "TailwindCSS", "API", "Geolocation"],
+        "Modern frontend for a construction company showcasing services, portfolio projects, team members, and contact information with smooth animations.",
+      date: "2025",
+      languages: ["React", "TailwindCSS", "Framer Motion", "EmailJS"],
       skills: [
-        "API Integration",
-        "Map Services",
-        "Local Storage",
-        "Mobile First",
+        "Responsive Design",
+        "UI/UX Design",
+        "Animation Effects",
+        "Contact Forms",
+        "Portfolio Showcase",
       ],
       image: "/images/construction.jpg",
       githubUrl: "https://github.com/bilisumaeresso/RE-front",
@@ -161,18 +175,23 @@ const AboutPage = () => {
     },
     {
       id: 5,
-      title: "Portfolio Website",
+      title: "Personal Portfolio Website",
       description:
-        "Modern portfolio website with animations and responsive design.",
-      date: "2024",
-      languages: ["React", "Tailwind CSS", "Framer Motion", "CSS"],
-      skills: ["Animation", "Performance", "SEO", "Accessibility"],
+        "Interactive portfolio featuring 3D animations, project showcases, responsive design, and contact integration. Built with modern React practices.",
+      date: "2026",
+      languages: ["React", "Tailwind CSS", "Framer Motion", "Three.js"],
+      skills: [
+        "Interactive Design",
+        "3D Animations",
+        "Performance Optimization",
+        "SEO Friendly",
+        "Responsive Layout",
+      ],
       image: "/images/portfolio.png",
       githubUrl: "https://github.com/bilisumaeresso/profile",
       liveUrl: "",
     },
   ];
-
   return (
     <div className="min-h-screen bg-gradient-to-tl from-indigo-500/25 via-purple-500/20 to-transparent overflow-hidden text-white relative">
       <div className="relative z-10 container mx-auto px-4 py-8 md:py-12">
@@ -492,7 +511,7 @@ const AboutPage = () => {
 
           {/* Projects Tab */}
           {activeTab === "projects" && (
-            <div id="project" className="space-y-8">
+            <div id="projects" className="space-y-8">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-3 mb-3">
                   <FolderOpen className="w-8 h-8 text-emerald-400" />
@@ -511,16 +530,17 @@ const AboutPage = () => {
                     className="group bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 overflow-hidden hover:border-emerald-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10"
                   >
                     {/* Project Image */}
-                    <div className="h-48 bg-gradient-to-br from-blue-500/20 to-purple-500/20 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60" />
-                      <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1 bg-gray-900/80 backdrop-blur-sm rounded-full text-sm border border-gray-700">
-                          {project.date}
-                        </span>
-                      </div>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <img src={project.image} alt="" />
-                      </div>
+                    <div className="h-48 relative overflow-hidden bg-gradient-to-br from-blue-500/20 to-purple-500/20">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                        loading="lazy" // Add lazy loading
+                        decoding="async" // Async decoding
+                        onError={(e) => {
+                          e.target.style.display = "none";
+                        }}
+                      />
                     </div>
 
                     <div className="p-5">
@@ -575,14 +595,14 @@ const AboutPage = () => {
                       {/* Skills */}
                       <div>
                         <div className="flex items-center gap-2 mb-2">
-                          <Tag className="w-4 h-4 text-purple-400" />
+                          <Tag className="w-4 h-4 text-indigo-400" />
                           <span className="text-sm font-medium">Skills</span>
                         </div>
                         <div className="flex flex-wrap gap-2">
                           {project.skills.map((skill, idx) => (
                             <span
                               key={idx}
-                              className="px-3 py-1 bg-purple-500/10 text-purple-400 rounded-full text-xs border border-purple-500/20"
+                              className="px-3 py-1 bg-purple-500/10 text-indigo-400 rounded-full text-xs border border-purple-500/20"
                             >
                               {skill}
                             </span>

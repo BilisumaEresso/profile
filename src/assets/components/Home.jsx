@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import dev from "../image/dev.png";
 import TechStackSection from "./TechStackSection";
@@ -129,6 +130,7 @@ const Home = () => {
         <div className="relative flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-8 lg:gap-12 xl:gap-16 max-w-6xl mx-auto">
           <motion.img
             src={dev}
+            loading="lazy"
             alt="Developer avatar"
             className="w-[150px] sm:w-[180px] md:w-[200px] lg:w-[220px] xl:w-[240px] rounded-3xl sm:rounded-4xl object-cover shadow-xl"
             initial={{ opacity: 0, y: 20 }}
@@ -241,6 +243,7 @@ const Home = () => {
             </a>
             <a
               href="/resume.pdf"
+            
               className="inline-block px-6 sm:px-8 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white rounded-lg text-sm sm:text-base font-medium transition-all duration-300 border border-white/20 hover:border-white/30"
             >
               View Resume

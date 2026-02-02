@@ -1,30 +1,28 @@
 import { useState } from "react";
 import {
-  Phone,
   Mail,
+  Phone,
   Github,
-  MessageSquare,
-  Send,
-  Home,
-  User,
-  Layers,
-  Folder,
-  MessageCircle,
-  ChevronRight,
-  Copy,
-  Check,
+  Linkedin,
   ExternalLink,
+  ChevronRight,
+  Heart,
+  Code,
+  Globe,
 } from "lucide-react";
 import logo from "../image/logo.png";
 import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { BsTelegram } from "react-icons/bs";
 
 const Footer = () => {
   const [emailCopied, setEmailCopied] = useState(false);
-  const [hoveredLink, setHoveredLink] = useState(null);
+  const currentYear = new Date().getFullYear();
 
   const handleEmailClick = () => {
     navigator.clipboard.writeText("bilisumaere@gmail.com");
     setEmailCopied(true);
+    toast.success("Email copied to clipboard!");
     setTimeout(() => setEmailCopied(false), 2000);
   };
 
@@ -32,271 +30,174 @@ const Footer = () => {
     window.open("tel:+251938730818");
   };
 
-  const currentYear = new Date().getFullYear();
+  const handleTelegramClick = () => {
+    window.open("https://t.me/libertus_man");
+  };
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900/95 to-black border-t border-white/10 pt-10 pb-6 px-4 sm:px-6 lg:px-8 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-10">
-          {/* Brand Section */}
-          <div className="text-center md:text-left space-y-6">
-            <div className="flex flex-col items-center md:items-start space-y-4">
-              <div className="relative group">
-                <img
-                  src={logo}
-                  alt="Bilisuma Eresso Logo"
-                  className="w-20 h-20 sm:w-24 sm:h-24 object-contain mb-2 transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+    <footer className="bg-black/95 border-t border-white/10 pt-12 pb-6 px-4">
+      <div className="max-w-6xl mx-auto">
+        {/* Main Footer Content - Simplified */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+          {/* Brand & Info */}
+          <div className="space-y-4">
+            <div className="flex flex-col items-center md:items-start space-y-3">
+              <div className="flex items-center gap-3">
+                <img src={logo} alt="Logo" className="w-20 object-contain" />
+                <div>
+                  <h3 className="text-lg font-semibold text-white">
+                    Bilisuma Eresso
+                  </h3>
+                  <p className="text-gray-400 text-sm">Full Stack Developer</p>
+                </div>
               </div>
-
-              <h2 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
-                Bilisuma Eresso
-              </h2>
-              <h3 className="text-gray-300 text-sm sm:text-base font-medium">
-                Full Stack Developer
-              </h3>
             </div>
 
-            <div className="space-y-3">
+            <p className="text-gray-500 text-sm text-center md:text-left leading-relaxed">
+              Building digital solutions with modern technologies and clean
+              code.
+            </p>
+
+            <div className="flex flex-col items-center md:items-start gap-3 pt-2">
               <button
                 onClick={handleCallClick}
-                className="inline-flex items-center gap-3 text-gray-300 hover:text-white transition-all duration-300 group w-full md:w-auto"
+                className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
               >
-                <div className="p-2 bg-indigo-500/10 rounded-lg group-hover:bg-indigo-500/20 transition-colors">
-                  <Phone className="w-5 h-5 text-indigo-400 group-hover:scale-110 transition-transform" />
+                <div className="p-2 bg-white/5 rounded-lg group-hover:bg-white/10">
+                  <Phone className="w-4 h-4" />
                 </div>
-                <span className="group-hover:translate-x-1 transition-transform">
-                  +251 938 730 818
-                </span>
+                <span className="text-sm">+251 938 730 818</span>
               </button>
-
-              <div className="relative">
-                <button
-                  onClick={handleEmailClick}
-                  className="inline-flex items-center gap-3 text-gray-300 hover:text-white transition-all duration-300 group w-full md:w-auto"
+              <button
+                onClick={handleEmailClick}
+                className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
+              >
+                <div
+                  className={`p-2 rounded-lg ${
+                    emailCopied
+                      ? "bg-green-500/20"
+                      : "bg-white/5 group-hover:bg-white/10"
+                  }`}
                 >
-                  <div className="p-2 bg-purple-500/10 rounded-lg group-hover:bg-purple-500/20 transition-colors">
-                    {emailCopied ? (
-                      <Check className="w-5 h-5 text-green-400" />
-                    ) : (
-                      <Mail className="w-5 h-5 text-purple-400 group-hover:scale-110 transition-transform" />
-                    )}
-                  </div>
-                  <span className="text-sm sm:text-base group-hover:translate-x-1 transition-transform">
-                    bilisumaere@gmail.com
-                  </span>
-                </button>
-
-                {emailCopied && (
-                  <span className="absolute left-0 -top-8 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 shadow-lg">
-                    <Check className="w-3 h-3" />
-                    Copied to clipboard
-                  </span>
-                )}
-              </div>
+                  <Mail
+                    className={`w-4 h-4 ${emailCopied ? "text-green-400" : ""}`}
+                  />
+                </div>
+                <span className="text-sm">bilisumaere@gmail.com</span>
+              </button>
+              <button
+                onClick={handleTelegramClick}
+                className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
+              >
+                <div className="p-2 bg-white/5 text-white/70 rounded-lg group-hover:bg-white/10">
+                  <BsTelegram className="w-4 h-4" />
+                </div>
+                <span className="text-sm">@libertus_man</span>
+              </button>
             </div>
           </div>
 
-          {/* Navigation Section */}
-          <div className="text-center md:text-left">
-            <h3 className="text-lg sm:text-xl font-semibold text-white mb-6 flex items-center gap-2 justify-center md:justify-start">
-              <Home className="w-5 h-5 text-indigo-400" />
-              Quick Links
+          {/* Quick Links - Simple */}
+          <div>
+            <h3 className="text-white font-medium mb-4 flex items-center gap-2">
+              <ChevronRight className="w-4 h-4 text-blue-400" />
+              Navigation
             </h3>
-            <ul className="space-y-4">
+            <ul className="space-y-2">
               {[
-                {
-                  label: "Home",
-                  path: "/#home",
-                  icon: <Home className="w-4 h-4" />,
-                },
-                {
-                  label: "About Me",
-                  path: "/about",
-                  icon: <User className="w-4 h-4" />,
-                },
-                {
-                  label: "Tech Stack",
-                  path: "/#tech",
-                  icon: <Layers className="w-4 h-4" />,
-                },
-                {
-                  label: "Projects",
-                  path: "/about/#project",
-                  icon: <Folder className="w-4 h-4" />,
-                },
-                {
-                  label: "Contact",
-                  path: "/contact",
-                  icon: <MessageCircle className="w-4 h-4" />,
-                },
+                { label: "Home", path: "/#home" },
+                { label: "About", path: "/about" },
+                { label: "Projects", path: "/about#projects" },
+                { label: "Tech Stack", path: "/#tech" },
+                { label: "Contact", path: "/contact#contact" },
               ].map((item) => (
                 <li key={item.label}>
                   <Link
                     to={item.path}
-                    className="flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300 group"
-                    onMouseEnter={() => setHoveredLink(item.label)}
-                    onMouseLeave={() => setHoveredLink(null)}
+                    className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 py-1 group"
                   >
-                    <div
-                      className={`p-1.5 rounded-lg transition-all duration-300 ${
-                        hoveredLink === item.label
-                          ? "bg-indigo-500/20 scale-110"
-                          : "bg-white/5"
-                      }`}
-                    >
-                      {item.icon}
-                    </div>
-                    <span className="flex-1 text-left group-hover:translate-x-2 transition-transform">
-                      {item.label}
-                    </span>
-                    <ChevronRight
-                      className={`w-4 h-4 transition-all duration-300 ${
-                        hoveredLink === item.label
-                          ? "opacity-100 translate-x-0"
-                          : "opacity-0 -translate-x-2"
-                      }`}
-                    />
+                    <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {item.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Social & Contact Section */}
-          <div className="text-center md:text-left">
-            <h3 className="text-lg sm:text-xl font-semibold text-white mb-6 flex items-center gap-2 justify-center md:justify-start">
-              <Send className="w-5 h-5 text-purple-400" />
-              Connect With Me
+          {/* Social Links - Clean */}
+          <div>
+            <h3 className="text-white font-medium mb-4 flex items-center gap-2">
+              <Globe className="w-4 h-4 text-purple-400" />
+              Connect
             </h3>
-            <div className="space-y-4">
-              <div className="flex flex-wrap justify-center md:justify-start gap-3">
-                {[
-                  {
-                    name: "GitHub",
-                    icon: <Github className="w-5 h-5" />,
-                    url: "https://github.com/bilisumaeresso",
-                    color: "from-gray-700 to-gray-900",
-                  },
-                  {
-                    name: "Telegram",
-                    icon: <Send className="w-5 h-5" />,
-                    url: "https://t.me/libertus_man",
-                    color: "from-blue-500 to-cyan-500",
-                  },
-                  {
-                    name: "WhatsApp",
-                    icon: <MessageSquare className="w-5 h-5" />,
-                    url: "https://wa.me/251938730818",
-                    color: "from-green-500 to-emerald-500",
-                  },
-                ].map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative overflow-hidden"
-                  >
-                    <div
-                      className={`p-3 rounded-xl bg-gradient-to-br ${social.color} backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105`}
-                    >
-                      {social.icon}
-                    </div>
-                    <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 group-hover:-bottom-10 transition-all duration-300 whitespace-nowrap border border-white/10">
-                      {social.name}
-                    </span>
-                  </a>
-                ))}
-              </div>
-
-              <div className="pt-4">
-                <p className="text-gray-400 text-sm mb-4">
-                  Let's build something amazing together
-                </p>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 group"
-                >
-                  <MessageCircle className="w-5 h-5" />
-                  Start a Conversation
-                  <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Newsletter/Updates Section */}
-          <div className="text-center md:text-left">
-            <h3 className="text-lg sm:text-xl font-semibold text-white mb-6 flex items-center gap-2 justify-center md:justify-start">
-              <Mail className="w-5 h-5 text-pink-400" />
-              Stay Updated
-            </h3>
-            <div className="space-y-4">
-              <p className="text-gray-400 text-sm">
-                Subscribe to get updates on new projects and technologies I'm
-                exploring.
-              </p>
-
-              <form className="space-y-3">
-                <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
-                  <input
-                    type="email"
-                    placeholder="Your email address"
-                    className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/50 transition-all"
-                  />
+            <div className="space-y-3">
+              <a
+                href="https://github.com/bilisumaeresso"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
+              >
+                <div className="p-2 bg-gray-800 rounded-lg group-hover:bg-gray-700">
+                  <Github className="w-4 h-4" />
                 </div>
-                <button
-                  type="submit"
-                  className="w-full py-3 bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-700 hover:to-rose-700 text-white rounded-lg font-medium transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-pink-500/25 flex items-center justify-center gap-2"
-                >
-                  <Send className="w-5 h-5" />
-                  Subscribe
-                </button>
-              </form>
+                <div className="flex-1">
+                  <span className="text-sm">GitHub</span>
+                  <p className="text-xs text-gray-500">@bilisumaeresso</p>
+                </div>
+                <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
 
-              <p className="text-gray-500 text-xs pt-2">
-                No spam, just occasional updates about my work.
-              </p>
+              <a
+                href="https://www.linkedin.com/in/bilisuma-eresso/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
+              >
+                <div className="p-2 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20">
+                  <Linkedin className="w-4 h-4 text-blue-400" />
+                </div>
+                <div className="flex-1">
+                  <span className="text-sm">LinkedIn</span>
+                  <p className="text-xs text-gray-500">
+                    Connect professionally
+                  </p>
+                </div>
+                <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm text-gray-300 hover:text-white transition-colors mt-4"
+              >
+                <Mail className="w-3 h-3" />
+                Get in touch
+              </Link>
             </div>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-white/10 my-8" />
+        {/* Bottom Divider */}
+        <div className="border-t border-white/5 my-6" />
 
-        {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        {/* Copyright - Minimal */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-center md:text-left">
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-500 text-sm">
               © {currentYear} Bilisuma Eresso. All rights reserved.
             </p>
-            <p className="text-gray-500 text-xs mt-1">
-              Built with React, Tailwind CSS, and ❤️
-            </p>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 text-gray-600 text-sm">
+              <Code className="w-4 h-4" />
+              <span>Built with React & Tailwind</span>
+            </div>
+            <div className="flex items-center gap-1 text-gray-600">
+              <Heart className="w-3 h-3 text-red-400 fill-current" />
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Add gradient animation */}
-      <style jsx>{`
-        @keyframes gradient {
-          0%,
-          100% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-        }
-        .animate-gradient {
-          background-size: 200% 200%;
-          animation: gradient 3s ease infinite;
-        }
-      `}</style>
     </footer>
   );
 };
