@@ -243,7 +243,8 @@ const Home = () => {
             </a>
             <a
               href="/resume.pdf"
-            
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block px-6 sm:px-8 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white rounded-lg text-sm sm:text-base font-medium transition-all duration-300 border border-white/20 hover:border-white/30"
             >
               View Resume
