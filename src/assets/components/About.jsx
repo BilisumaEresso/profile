@@ -256,7 +256,7 @@ const AboutPage = () => {
                       {`const developer = {
   name: "Bilisuma Eresso",
   role: "Full Stack Developer",
-  location: "Earth",
+  location: "Addis Ababa, Ethiopia",
   skills: [
     "React", "Node.js", ".NET",
     "PostgreSQL", "MongoDB"
