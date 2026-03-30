@@ -1,290 +1,144 @@
 import { useState } from "react";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Send,
-  Linkedin,
-  Github,
-  MessageSquare,
-  User,
-  FileText,
-  CheckCircle,
-  Loader2,
-} from "lucide-react";
+import { Send, ArrowUpRight } from "lucide-react";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     try {
-      // Using Formspree endpoint
-      const formspreeEndpoint = "https://formspree.io/f/xgozreej"; // You'll replace this
-
+      const formspreeEndpoint = "https://formspree.io/f/xgozreej";
       const response = await fetch(formspreeEndpoint, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          _subject: `New message from ${formData.name} - Portfolio Contact`,
+          _subject: `New message from ${formData.name}`,
         }),
       });
 
       if (response.ok) {
-        toast.success("Message sent successfully! I'll get back to you soon.");
+        toast.success("Message sent successfully.");
         setFormData({ name: "", email: "", message: "" });
       } else {
-        throw new Error("Failed to send message");
+        throw new Error("Failed");
       }
     } catch (error) {
-      console.error("Error sending message:", error);
-      toast.error(
-        "Failed to send message. Please try again or email me directly.",
-      );
+      toast.error("Failed to send message.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   return (
-    <div className="min-h-screen bg-gradient-to-tl from-indigo-500/25 via-purple-500/20 to-transparent overflow-hidden text-white pt-28 pb-12 px-4">
-      <div className="container mx-auto max-w-6xl">
-        {/* Header */}
-        <div id="contact" className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Get In Touch
-            </span>
+    <div className="flex-grow flex flex-col items-center justify-start w-full px-4 sm:px-6 md:px-8 max-w-5xl mx-auto py-16 lg:py-24">
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 w-full">
+        {/* Left Side - Typography & Info */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col"
+        >
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white font-['Space_Grotesk'] mb-6 leading-[1.1]">
+            Let's start a <br />
+            <span className="text-neutral-500">conversation.</span>
           </h1>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Have a project in mind or want to discuss opportunities? Feel free
-            to reach out—I'm always open to new connections and collaborations.
+
+          <p className="text-lg text-neutral-400 mb-12 max-w-md font-light leading-relaxed">
+            Have a project in mind, a question, or just want to say hi? I'm always open to discussing new opportunities and ideas.
           </p>
-        </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Contact Form */}
-          <div className="lg:col-span-2 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 p-6 md:p-8">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-2 bg-blue-500/20 rounded-lg">
-                <MessageSquare className="w-5 h-5 text-blue-400" />
-              </div>
-              <h2 className="text-2xl font-bold">Send a Message</h2>
+          <div className="space-y-6 mt-auto">
+            <div>
+              <h3 className="text-sm font-mono text-neutral-500 uppercase tracking-widest mb-2">Email</h3>
+              <a href="mailto:bilisumaere@gmail.com" className="text-xl text-white hover:text-emerald-400 transition-colors inline-flex items-center gap-2 group">
+                bilisumaere@gmail.com
+                <ArrowUpRight size={20} className="text-neutral-600 group-hover:text-emerald-400 transition-colors group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
             </div>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className="flex items-center gap-2 text-gray-300 mb-2">
-                  <User className="w-4 h-4" />
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  disabled={isSubmitting}
-                  className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors disabled:opacity-50"
-                  placeholder="Enter your name"
-                />
+            <div>
+              <h3 className="text-sm font-mono text-neutral-500 uppercase tracking-widest mb-2">Socials</h3>
+              <div className="flex gap-6">
+                <a href="https://github.com/bilisumaeresso" target="_blank" rel="noreferrer" className="text-white hover:text-emerald-400 transition-colors text-lg">GitHub</a>
+                <a href="https://linkedin.com/in/bilisuma-eresso" target="_blank" rel="noreferrer" className="text-white hover:text-emerald-400 transition-colors text-lg">LinkedIn</a>
               </div>
+            </div>
+          </div>
+        </motion.div>
 
-              <div>
-                <label className="flex items-center gap-2 text-gray-300 mb-2">
-                  <Mail className="w-4 h-4" />
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  disabled={isSubmitting}
-                  className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors disabled:opacity-50"
-                  placeholder="Enter your email"
-                />
-              </div>
-
-              <div>
-                <label className="flex items-center gap-2 text-gray-300 mb-2">
-                  <FileText className="w-4 h-4" />
-                  Your Message
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows="6"
-                  disabled={isSubmitting}
-                  className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors resize-none disabled:opacity-50"
-                  placeholder="What would you like to discuss?"
-                />
-              </div>
-
-              <button
-                type="submit"
+        {/* Right Side - Form */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="bg-neutral-900/40 border border-neutral-800 rounded-3xl p-8 sm:p-10"
+        >
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+            <div className="flex flex-col gap-2">
+              <label htmlFor="name" className="text-sm font-medium text-neutral-400">Name</label>
+              <input
+                id="name"
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
                 disabled={isSubmitting}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg hover:opacity-90 transition-opacity font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-4 h-4" />
-                    Send Message
-                  </>
-                )}
-              </button>
-            </form>
-          </div>
-
-          {/* Contact Information */}
-          <div className="space-y-6">
-            {/* Contact Details */}
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 p-6">
-              <h3 className="text-xl font-bold mb-6">Contact Information</h3>
-
-              <div className="space-y-5">
-                <div className="flex items-start gap-4">
-                  <div className="p-2 bg-blue-500/20 rounded-lg">
-                    <Mail className="w-5 h-5 text-blue-400" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium mb-1">Email</h4>
-                    <a
-                      href="mailto:bilisumaeresso@gmail.com"
-                      className="text-gray-300 hover:text-blue-400 transition-colors"
-                    >
-                      bilisumaeresso@gmail.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="p-2 bg-purple-500/20 rounded-lg">
-                    <Phone className="w-5 h-5 text-purple-400" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium mb-1">Phone</h4>
-                    <p className="text-gray-300">Available upon request</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="p-2 bg-green-500/20 rounded-lg">
-                    <MapPin className="w-5 h-5 text-green-400" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium mb-1">Location</h4>
-                    <p className="text-gray-300">
-                      Remote / Available Worldwide
-                    </p>
-                  </div>
-                </div>
-              </div>
+                className="w-full bg-neutral-950/50 border-b border-neutral-700 px-0 py-3 text-white focus:outline-none focus:border-white transition-colors disabled:opacity-50 font-light"
+                placeholder="John Doe"
+              />
             </div>
 
-            {/* Social Links */}
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 p-6">
-              <h3 className="text-xl font-bold mb-6">Connect With Me</h3>
-
-              <div className="space-y-4">
-                <a
-                  href="https://github.com/bilisumaeresso"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 bg-gray-900/50 rounded-lg hover:bg-gray-900 transition-colors group"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-gray-800 rounded-lg">
-                      <Github className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <div className="font-medium">GitHub</div>
-                      <div className="text-sm text-gray-400">
-                        @bilisumaeresso
-                      </div>
-                    </div>
-                  </div>
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Send className="w-4 h-4 rotate-45" />
-                  </div>
-                </a>
-
-                <a
-                  href="https://www.linkedin.com/in/bilisuma-eresso/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 bg-gray-900/50 rounded-lg hover:bg-gray-900 transition-colors group"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-blue-500/20 rounded-lg">
-                      <Linkedin className="w-5 h-5 text-blue-400" />
-                    </div>
-                    <div>
-                      <div className="font-medium">LinkedIn</div>
-                      <div className="text-sm text-gray-400">
-                        Connect professionally
-                      </div>
-                    </div>
-                  </div>
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Send className="w-4 h-4 rotate-45" />
-                  </div>
-                </a>
-              </div>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="email" className="text-sm font-medium text-neutral-400">Email</label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                disabled={isSubmitting}
+                className="w-full bg-neutral-950/50 border-b border-neutral-700 px-0 py-3 text-white focus:outline-none focus:border-white transition-colors disabled:opacity-50 font-light"
+                placeholder="john@example.com"
+              />
             </div>
 
-            {/* Response Time */}
-            <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-5">
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
-                <div>
-                  <h4 className="font-medium mb-1">Quick Response</h4>
-                  <p className="text-sm text-gray-300">
-                    I typically respond within 24 hours. Looking forward to
-                    connecting with you!
-                  </p>
-                </div>
-              </div>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="message" className="text-sm font-medium text-neutral-400">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows="4"
+                disabled={isSubmitting}
+                className="w-full bg-neutral-950/50 border-b border-neutral-700 px-0 py-3 text-white focus:outline-none focus:border-white transition-colors disabled:opacity-50 resize-none font-light"
+                placeholder="Tell me about your project..."
+              />
             </div>
-          </div>
-        </div>
 
-        {/* Additional Info */}
-        <div className="mt-12 text-center">
-          <p className="text-gray-400 text-sm">
-            Prefer a different method? Feel free to reach out on any platform
-            where you're most comfortable.
-          </p>
-        </div>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="mt-4 w-full flex items-center justify-between px-6 py-4 bg-white text-black rounded-xl font-semibold hover:bg-neutral-200 transition-colors disabled:opacity-70 disabled:cursor-not-allowed group"
+            >
+              <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
+              <Send size={18} className={`transition-transform ${isSubmitting ? "animate-pulse" : "group-hover:translate-x-1"}`} />
+            </button>
+          </form>
+        </motion.div>
       </div>
     </div>
   );
