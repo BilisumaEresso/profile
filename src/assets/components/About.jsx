@@ -34,37 +34,72 @@ const AboutPage = () => {
     },
   ];
 
-  const projects = [
-    {
-      title: "EduLingua - Language Learning platform",
-      description:
-        "A real-world working website used for teaching East African Languages using different native languages, and uses AI to generate lessons and exercises.",
-      tech: ["React", "Node.js", "MongoDB", "Express", "AI", "Tailwind CSS"],
-      githubUrl: "https://github.com/bilisumaeresso/EduLingua-FrontEnd",
-    },
-    {
-      title: "E-Commerce Platform (AI powered)",
-      description:
-        "A complete online shopping solution featuring user authentication, shopping cart, payment integration, and admin dashboard. THis uses AI for personal recommendations and global trends",
-      tech: ["React", "Node.js", "MongoDB", "Express", "AI", "Tailwind CSS"],
-      githubUrl: "https://github.com/bilisumaeresso/ecommerce-frontend",
-    },
-    {
-      title: "Tech Blog App",
-      description:
-        "A blogging platform for tech enthusiasts to share their knowledge and experiences.",
-      tech: ["React", "Node.js", "MongoDB", "Express", "AI", "Tailwind CSS"],
-      githubUrl: "https://github.com/bilisumaeresso/react-blog-app",
-      liveUrl: "https://bilisa-blog.vercel.app",
-    },
-    {
-      title: "Construction Company Website",
-      description:
-        "Modern frontend for a construction company showcasing services, portfolio projects, and contact information with smooth animations.",
-      tech: ["React", "Tailwind CSS", "Framer Motion"],
-      githubUrl: "https://github.com/bilisumaeresso/RE-front",
-    },
-  ];
+ const projects = [
+   {
+     title: "EduLingua",
+     subtitle: "AI-Driven Language Learning",
+     description:
+       "A sophisticated educational platform dedicated to East African languages including Swahili, Amharic, Afan Oromo, Somali, and Tigrinya. It leverages Large Language Models (LLMs) to generate dynamic, context-aware lessons and interactive exercises, supporting both Latin and Ge'ez (Fidel) scripts.",
+     tech: [
+       "React",
+       "Node.js",
+       "MongoDB",
+       "Express",
+       "OpenAI API",
+       "Tailwind CSS",
+     ],
+     features: [
+       "Dynamic Lesson Generation",
+       "Multi-script Support",
+       "AI-Powered Assessment",
+     ],
+     githubUrl: "https://github.com/bilisumaeresso/EduLingua-FrontEnd",
+     category: "Education",
+   },
+   {
+     title: "AI-Powered E-Commerce",
+     subtitle: "Full-Stack Retail Solution",
+     description:
+       "A comprehensive MERN-stack commerce ecosystem featuring secure JWT authentication, Stripe payment integration, and an administrative dashboard for inventory management. Integrated an AI recommendation engine to analyze user behavior and forecast global market trends.",
+     tech: ["React", "Node.js", "MongoDB", "Express", "Redux", "Stripe API"],
+     features: [
+       "Personalized Recommendations",
+       "Admin Analytics Dashboard",
+       "Secure Checkout",
+     ],
+     githubUrl: "https://github.com/bilisumaeresso/ecommerce-frontend",
+     category: "E-Commerce",
+   },
+   {
+     title: "DevPulse Tech Blog",
+     subtitle: "Community Knowledge Sharing",
+     description:
+       "A high-performance blogging platform designed for the developer community. Features a minimalist dark-mode interface, Markdown support for technical writing, and SEO optimization to ensure maximum reach for technical articles.",
+     tech: ["React", "Node.js", "MongoDB", "Express", "Vercel"],
+     features: [
+       "Markdown Integration",
+       "Responsive Dark-Mode UI",
+       "Comment System",
+     ],
+     githubUrl: "https://github.com/bilisumaeresso/react-blog-app",
+     liveUrl: "https://bilisa-blog.vercel.app",
+     category: "Social/Media",
+   },
+   {
+     title: "RE Construction",
+     subtitle: "Corporate Digital Presence",
+     description:
+       "A conversion-focused professional landing page for a construction firm. Implemented complex 3D visual elements and fluid UI animations to showcase architectural portfolios, significantly improving user engagement metrics.",
+     tech: ["React", "Tailwind CSS", "Framer Motion", "Three.js"],
+     features: [
+       "3D Portfolio Showcase",
+       "Optimized Lead Generation Form",
+       "Performance Optimized",
+     ],
+     githubUrl: "https://github.com/bilisumaeresso/RE-front",
+     category: "Business",
+   },
+ ];
 
   return (
     <div className="flex-grow flex flex-col items-center justify-start w-full px-4 sm:px-6 md:px-8 max-w-5xl mx-auto">

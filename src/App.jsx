@@ -34,7 +34,7 @@ function App() {
           }}
         />
         <ScrollToHash />
-        <main className="flex-grow flex flex-col pt-24 pb-16">
+        <main className="grow flex flex-col pt-24 pb-16">
           <Routes>
             <Route index element={<Home />} />
             <Route path="/about" element={<About />} />
