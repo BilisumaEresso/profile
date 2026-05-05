@@ -11,11 +11,13 @@ const ScrollToHash = () => {
     const el = document.getElementById(id);
 
     if (el) {
-      // Delay ensures DOM is ready
+      // Delay ensures DOM is ready before applying top offset.
       setTimeout(() => {
-        el.scrollIntoView({
+        const navOffset = 110;
+        const elementY = el.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: Math.max(0, elementY - navOffset),
           behavior: "smooth",
-          block: "start",
         });
       }, 50);
     }

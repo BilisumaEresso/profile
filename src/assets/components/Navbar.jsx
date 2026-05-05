@@ -1,32 +1,70 @@
 import { useState, useEffect } from "react";
-import logo from "../image/logo.png";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/contact", label: "Contact" },
+  { to: "/#home", label: "Home", key: "home" },
+  { to: "/#work", label: "Work", key: "work" },
+  { to: "/#projects", label: "Projects", key: "projects" },
+  { to: "/#contact", label: "Contact", key: "contact" },
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   const location = useLocation();
 
   // Close menu on route change
   useEffect(() => {
     setIsOpen(false);
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
 
-  // Handle scroll effect
+  // Keep nav state in sync when arriving from hash URL.
+  useEffect(() => {
+    if (location.hash) {
+      setActiveSection(location.hash.replace("#", ""));
+    }
+  }, [location.hash]);
+
+  // Handle scroll effect with minimal updates.
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const isScrolled = window.scrollY > 16;
+      setScrolled((prev) => (prev === isScrolled ? prev : isScrolled));
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Scroll-aware active section improves wayfinding in long pages.
+  useEffect(() => {
+    const sectionIds = ["home", "work", "toolkit", "about", "experience", "projects", "contact"];
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visible?.target?.id) {
+          setActiveSection(visible.target.id);
+        }
+      },
+      {
+        rootMargin: "-35% 0px -45% 0px",
+        threshold: [0.2, 0.5, 0.75],
+      },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
   // Prevent scroll when mobile menu is open
@@ -58,41 +96,41 @@ const Navbar = () => {
             aria-label="Main navigation"
           >
             {/* Logo area */}
-            <NavLink to="/" className="flex items-center gap-3 z-50 group">
+            <Link to="/#home" className="flex items-center gap-3 z-50 group">
               <div className="w-10 h-10 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center overflow-hidden group-hover:border-neutral-600 transition-colors">
                 <span className="font-['Space_Grotesk'] font-bold text-xl text-white tracking-tighter">
                   BE.
                 </span>
               </div>
-            </NavLink>
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-1">
-              {links.map(({ to, label }) => (
-                <NavLink
+              {links.map(({ to, label, key }) => (
+                <Link
                   key={to}
                   to={to}
-                  className={({ isActive }) =>
+                  className={
                     `px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
-                      isActive
+                      activeSection === key
                         ? "bg-neutral-800/80 text-white shadow-sm"
                         : "text-neutral-400 hover:text-white hover:bg-neutral-800/40"
                     }`
                   }
                 >
                   {label}
-                </NavLink>
+                </Link>
               ))}
             </div>
 
             {/* Mobile Menu Button - Also Desktop 'Let's Connect' CTA area */}
             <div className="flex items-center gap-4 z-50">
-              <NavLink
-                to="/contact"
+              <Link
+                to="/#contact"
                 className="hidden md:flex items-center px-5 py-2.5 rounded-xl bg-white text-black text-sm font-semibold hover:bg-neutral-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]"
               >
-                Let's connect
-              </NavLink>
+                Start a project
+              </Link>
 
               <button
                 className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-700 transition-colors"
@@ -117,7 +155,7 @@ const Navbar = () => {
             className="fixed inset-0 z-40 bg-[#0a0a0a]/95 backdrop-blur-md md:hidden flex flex-col justify-center px-8"
           >
             <div className="flex flex-col space-y-2 w-full max-w-sm mx-auto">
-              {links.map(({ to, label }, i) => (
+              {links.map(({ to, label, key }, i) => (
                 <motion.div
                   key={to}
                   initial={{ opacity: 0, x: -20 }}
@@ -125,16 +163,16 @@ const Navbar = () => {
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3, delay: i * 0.1 }}
                 >
-                  <NavLink
+                  <Link
                     to={to}
-                    className={({ isActive }) =>
+                    className={
                       `block text-4xl font-semibold tracking-tight py-4 border-b border-neutral-800 transition-colors ${
-                        isActive ? "text-white" : "text-neutral-500"
+                        activeSection === key ? "text-white" : "text-neutral-500"
                       }`
                     }
                   >
                     {label}
-                  </NavLink>
+                  </Link>
                 </motion.div>
               ))}
               <motion.div
@@ -144,12 +182,12 @@ const Navbar = () => {
                 transition={{ duration: 0.3, delay: links.length * 0.1 }}
                 className="pt-8"
               >
-                <NavLink
-                  to="/contact"
+                <Link
+                  to="/#contact"
                   className="block w-full text-center px-6 py-4 rounded-xl bg-white text-black text-lg font-semibold hover:bg-neutral-200 transition-colors"
                 >
-                  Let's connect
-                </NavLink>
+                  Start a project
+                </Link>
               </motion.div>
             </div>
           </motion.div>

@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
-import { p } from "framer-motion/client";
 import { ArrowUpRight, Github, Link } from "lucide-react";
+import SectionHeading from "./sections/SectionHeading";
+import SectionReveal from "./sections/SectionReveal";
+import SectionShell from "./sections/SectionShell";
 
 const AboutPage = () => {
   const experiences = [
@@ -34,12 +36,11 @@ const AboutPage = () => {
     },
   ];
 
- const projects = [
+  const projects = [
    {
      title: "EduLingua",
-     subtitle: "AI-Driven Language Learning",
      description:
-       "A sophisticated educational platform dedicated to East African languages including Swahili, Amharic, Afan Oromo, Somali, and Tigrinya. It leverages Large Language Models (LLMs) to generate dynamic, context-aware lessons and interactive exercises, supporting both Latin and Ge'ez (Fidel) scripts.",
+       "An educational platform for East African languages using LLM-generated lessons and adaptive exercises.",
      tech: [
        "React",
        "Node.js",
@@ -48,248 +49,133 @@ const AboutPage = () => {
        "OpenAI API",
        "Tailwind CSS",
      ],
-     features: [
-       "Dynamic Lesson Generation",
-       "Multi-script Support",
-       "AI-Powered Assessment",
-     ],
      githubUrl: "https://github.com/bilisumaeresso/EduLingua-FrontEnd",
-     category: "Education",
    },
    {
      title: "AI-Powered E-Commerce",
-     subtitle: "Full-Stack Retail Solution",
      description:
-       "A comprehensive MERN-stack commerce ecosystem featuring secure JWT authentication, Stripe payment integration, and an administrative dashboard for inventory management. Integrated an AI recommendation engine to analyze user behavior and forecast global market trends.",
+       "A MERN commerce app with JWT auth, Stripe checkout, and an admin dashboard for inventory and reporting.",
      tech: ["React", "Node.js", "MongoDB", "Express", "Redux", "Stripe API"],
-     features: [
-       "Personalized Recommendations",
-       "Admin Analytics Dashboard",
-       "Secure Checkout",
-     ],
      githubUrl: "https://github.com/bilisumaeresso/ecommerce-frontend",
-     category: "E-Commerce",
    },
    {
      title: "DevPulse Tech Blog",
-     subtitle: "Community Knowledge Sharing",
      description:
-       "A high-performance blogging platform designed for the developer community. Features a minimalist dark-mode interface, Markdown support for technical writing, and SEO optimization to ensure maximum reach for technical articles.",
+       "A developer blog platform with markdown support, SEO basics, and a clean dark-mode reading experience.",
      tech: ["React", "Node.js", "MongoDB", "Express", "Vercel"],
-     features: [
-       "Markdown Integration",
-       "Responsive Dark-Mode UI",
-       "Comment System",
-     ],
      githubUrl: "https://github.com/bilisumaeresso/react-blog-app",
      liveUrl: "https://bilisa-blog.vercel.app",
-     category: "Social/Media",
    },
    {
      title: "RE Construction",
-     subtitle: "Corporate Digital Presence",
      description:
-       "A conversion-focused professional landing page for a construction firm. Implemented complex 3D visual elements and fluid UI animations to showcase architectural portfolios, significantly improving user engagement metrics.",
+       "A conversion-focused landing page for a construction firm with interactive visuals and polished transitions.",
      tech: ["React", "Tailwind CSS", "Framer Motion", "Three.js"],
-     features: [
-       "3D Portfolio Showcase",
-       "Optimized Lead Generation Form",
-       "Performance Optimized",
-     ],
      githubUrl: "https://github.com/bilisumaeresso/RE-front",
-     category: "Business",
    },
- ];
+  ];
 
   return (
-    <div className="flex-grow flex flex-col items-center justify-start w-full px-4 sm:px-6 md:px-8 max-w-5xl mx-auto">
-      {/* HEADER */}
-      <section className="w-full pt-16 md:pt-24 pb-16 border-b border-neutral-900">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter text-white font-['Space_Grotesk']"
-        >
-          About & <span className="text-neutral-500">Work.</span>
-        </motion.h1>
-      </section>
+    <>
+      <SectionShell id="about">
+        <SectionHeading
+          eyebrow="Background"
+          title="About & work"
+          description="I build products end to end, from shaping requirements to polishing final interactions."
+        />
+        <SectionReveal className="prose prose-invert prose-lg md:col-span-8">
+          <p className="leading-relaxed text-neutral-300">
+            I am a full-stack developer based in Addis Ababa, Ethiopia. Most of my work sits at the intersection of product and engineering: shipping features that are clear for users and maintainable for teams.
+          </p>
+          <p className="leading-relaxed text-neutral-400">
+            I care about strong foundations: clean React architecture, resilient APIs, sensible database design, and interfaces that communicate state clearly.
+          </p>
+          <p className="leading-relaxed text-neutral-400">
+            Outside coding, I study interaction design patterns and break down products I admire to understand why they feel intuitive.
+          </p>
+        </SectionReveal>
+      </SectionShell>
 
-      {/* PHILOSOPHY / INTRO */}
-      <section className="w-full py-16 lg:py-24 border-b border-neutral-900">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
-          <div className="md:col-span-4">
-            <h2 className="text-xl text-neutral-500 font-medium font-mono uppercase tracking-widest sticky top-32">
-              Background
-            </h2>
-          </div>
-          <div className="md:col-span-8">
-            <motion.div
+      <SectionShell id="experience">
+        <SectionHeading
+          eyebrow="Timeline"
+          title="Experience"
+          description="A quick look at the projects and roles that shaped my current approach."
+        />
+        <div className="space-y-10 md:col-span-8">
+          {experiences.map((exp, index) => (
+            <motion.article
+              key={exp.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="prose prose-invert prose-lg text-neutral-400 font-light"
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.4, delay: index * 0.06 }}
+              className="rounded-2xl border border-neutral-800 bg-neutral-900/40 p-6 md:p-7"
             >
-              <p className="mb-6 leading-relaxed">
-                I'm a full-stack developer based in Addis Ababa, Ethiopia. I
-                build digital experiences that solve real problems. With a focus
-                on clean code and modern technologies, I create applications
-                that are both highly functional and visually stunning.
-              </p>
-              <p className="mb-6 leading-relaxed">
-                My philosophy is straightforward:{" "}
-                <strong className="text-white font-medium">
-                  simplicity takes more effort than complexity.
-                </strong>{" "}
-                I value modular, scalable architecture, performance-optimized
-                code, and thoughtful UX design. Whether I'm designing a database
-                schema or animating a UI element, my goal is to deliver
-                excellence.
-              </p>
-              <p className="leading-relaxed">
-                When I'm not coding, I'm usually exploring UI/UX design trends,
-                diving into problem-solving algorithms, or continuously learning
-                new technologies to push my limits.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* EXPERIENCE TIMELINE */}
-      <section className="w-full py-16 lg:py-24 border-b border-neutral-900">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
-          <div className="md:col-span-4">
-            <h2 className="text-xl text-neutral-500 font-medium font-mono uppercase tracking-widest sticky top-32">
-              Experience
-            </h2>
-          </div>
-          <div className="md:col-span-8">
-            <div className="space-y-16">
-              {experiences.map((exp, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group"
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2 gap-2 sm:gap-0">
-                    <h3 className="text-2xl font-bold text-white tracking-tight">
-                      {exp.title}
-                    </h3>
-                    <span className="text-sm font-mono text-neutral-500">
-                      {exp.year}
-                    </span>
-                  </div>
-                  <div className="text-neutral-300 font-medium mb-4">
-                    {exp.company}
-                  </div>
-                  <p className="text-neutral-400 leading-relaxed font-light">
-                    {exp.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SELECTED PROJECTS */}
-      <section className="w-full py-16 lg:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
-          <div className="md:col-span-4">
-            <h2 className="text-xl text-neutral-500 font-medium font-mono uppercase tracking-widest sticky top-32">
-              Selected Projects
-            </h2>
-            <div className="mt-8 hidden md:block">
-              <a
-                href="https://github.com/bilisumaeresso"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 text-neutral-400 hover:text-white transition-colors text-sm font-medium"
-              >
-                View all on GitHub <ArrowUpRight size={16} />
-              </a>
-            </div>
-          </div>
-          <div className="md:col-span-8">
-            <div className="flex flex-col gap-12">
-              {projects.map((project, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group block"
-                >
-                  <div className="flex flex-col p-8 rounded-3xl bg-neutral-900/50 border border-neutral-800 hover:border-neutral-600 hover:bg-neutral-900 transition-all duration-300">
-                    <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-2xl font-bold text-white tracking-tight group-hover:text-emerald-400 transition-colors">
-                        {project.title}
-                      </h3>
-                      <div className="flex gap-4">
-                      <div className="flex gap-2 text-neutral-400">
-                        {project.liveUrl ? (
-                          <a
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="hover:text-white transition-colors p-2 -mr-2"
-                          >
-                            <Link size={20} />
-                          </a>
-                        ):""}
-                      </div>
-                      <div className="flex gap-2 text-neutral-400">
-                        {project.githubUrl && (
-                          <a
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="hover:text-white transition-colors p-2 -mr-2"
-                          >
-                            <Github size={20} />
-                          </a>
-                        )}
-                      </div>
-
-                      </div>
-                    </div>
-                    <p className="text-neutral-400 font-light leading-relaxed mb-8">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      {project.tech.map((tech, i) => (
-                        <span
-                          key={i}
-                          className="px-3 py-1.5 bg-neutral-950 border border-neutral-800 text-neutral-300 rounded-lg text-xs font-medium"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-
-              <div className="md:hidden mt-4">
-                <a
-                  href="https://github.com/bilisumaeresso"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 text-neutral-400 hover:text-white transition-colors text-sm font-medium"
-                >
-                  View all on GitHub <ArrowUpRight size={16} />
-                </a>
+              <div className="mb-2 flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
+                <h3 className="text-xl font-semibold tracking-tight text-white">{exp.title}</h3>
+                <span className="text-xs uppercase tracking-[0.14em] text-neutral-500">{exp.year}</span>
               </div>
-            </div>
-          </div>
+              <p className="text-sm font-medium text-neutral-300">{exp.company}</p>
+              <p className="mt-3 text-sm leading-relaxed text-neutral-400">{exp.description}</p>
+            </motion.article>
+          ))}
         </div>
-      </section>
-    </div>
+      </SectionShell>
+
+      <SectionShell id="projects" className="border-b-0 pb-4">
+        <SectionHeading
+          eyebrow="Selected"
+          title="Projects"
+          description="Focused products I built across education, commerce, publishing, and business websites."
+        />
+        <div className="flex flex-col gap-6 md:col-span-8">
+          {projects.map((project, index) => (
+            <motion.article
+              key={project.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.4, delay: index * 0.06 }}
+              className="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6 transition-colors duration-200 hover:border-neutral-600"
+            >
+              <div className="mb-4 flex items-start justify-between gap-4">
+                <h3 className="text-xl font-semibold tracking-tight text-white">{project.title}</h3>
+                <div className="flex gap-1 text-neutral-400">
+                  {project.liveUrl ? (
+                    <a href={project.liveUrl} target="_blank" rel="noreferrer" className="rounded-md p-2 transition-colors hover:text-white">
+                      <Link size={18} />
+                    </a>
+                  ) : null}
+                  {project.githubUrl ? (
+                    <a href={project.githubUrl} target="_blank" rel="noreferrer" className="rounded-md p-2 transition-colors hover:text-white">
+                      <Github size={18} />
+                    </a>
+                  ) : null}
+                </div>
+              </div>
+              <p className="text-sm leading-relaxed text-neutral-400">{project.description}</p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {project.tech.map((tech) => (
+                  <span key={tech} className="rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-1 text-xs font-medium text-neutral-300">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.article>
+          ))}
+
+          <a
+            href="https://github.com/bilisumaeresso"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-medium text-neutral-400 transition-colors hover:text-white"
+          >
+            View all on GitHub <ArrowUpRight size={16} />
+          </a>
+        </div>
+      </SectionShell>
+    </>
   );
 };
 

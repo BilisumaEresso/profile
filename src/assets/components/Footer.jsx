@@ -14,15 +14,17 @@ const Footer = () => {
         </div>
 
         <div className="flex items-center gap-6 text-sm font-medium text-neutral-400">
-          <Link to="/" className="hover:text-white transition-colors">Home</Link>
-          <Link to="/about" className="hover:text-white transition-colors">About</Link>
+          <Link to="/#home" className="hover:text-white transition-colors">Home</Link>
+          <Link to="/#work" className="hover:text-white transition-colors">Work</Link>
+          <Link to="/#projects" className="hover:text-white transition-colors">Projects</Link>
+          <Link to="/#contact" className="hover:text-white transition-colors">Contact</Link>
           <a href="/resume.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:text-white transition-colors">
             Resume <ArrowUpRight size={14} />
           </a>
         </div>
 
         <div className="flex items-center gap-2 text-xs text-neutral-600 font-mono">
-          <span>Crafted with</span>
+          <span>Built with care</span>
           <Heart size={12} className="text-neutral-500" />
           <span>in Ethiopia</span>
         </div>
