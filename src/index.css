@@ -49,7 +49,17 @@ body {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: linear-gradient(to right, #34d399, #3b82f6); /* Emerald to Blue */
+  background-image: linear-gradient(
+    to right,
+    #34d399,
+    #22d3ee
+  ); /* Emerald to Cyan */
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #262626, transparent);
+  border: none;
 }
 
 /* Glassmorphism utility */

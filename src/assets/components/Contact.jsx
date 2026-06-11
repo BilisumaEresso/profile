@@ -1,12 +1,16 @@
-import { useState } from "react";
-import { Send, ArrowUpRight } from "lucide-react";
-import toast from "react-hot-toast";
 import { motion } from "framer-motion";
+import { ArrowUpRight, Send } from "lucide-react";
+import { useState } from "react";
+import toast from "react-hot-toast";
 import SectionHeading from "./sections/SectionHeading";
 import SectionShell from "./sections/SectionShell";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -16,7 +20,10 @@ const Contact = () => {
       const formspreeEndpoint = "https://formspree.io/f/xgozreej";
       const response = await fetch(formspreeEndpoint, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
@@ -38,7 +45,8 @@ const Contact = () => {
     }
   };
 
-  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
   return (
     <SectionShell id="contact" className="border-b-0 pb-0">
@@ -56,26 +64,51 @@ const Contact = () => {
           className="flex flex-col"
         >
           <h3 className="text-2xl font-semibold tracking-tight text-white md:text-3xl">
-            Let us talk through it.
+            Let's talk through it.
           </h3>
 
           <p className="mb-10 mt-4 max-w-md text-sm leading-relaxed text-neutral-400">
-            I usually respond with a scoped plan, timeline estimate, and tradeoffs instead of vague promises.
+            I usually respond with a scoped plan, timeline estimate, and
+            tradeoffs instead of vague promises.
           </p>
 
           <div className="space-y-6 mt-auto">
             <div>
-              <h3 className="mb-2 text-xs uppercase tracking-[0.2em] text-neutral-500">Email</h3>
-              <a href="mailto:bilisumaere@gmail.com" className="group inline-flex items-center gap-2 text-lg text-white transition-colors hover:text-emerald-400">
+              <h3 className="mb-2 text-xs uppercase tracking-[0.2em] text-neutral-500">
+                Email
+              </h3>
+              <a
+                href="mailto:bilisumaere@gmail.com"
+                className="group inline-flex items-center gap-2 text-lg text-white transition-colors hover:text-emerald-400"
+              >
                 bilisumaere@gmail.com
-                <ArrowUpRight size={20} className="text-neutral-600 group-hover:text-emerald-400 transition-colors group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight
+                  size={20}
+                  className="text-neutral-600 group-hover:text-emerald-400 transition-colors group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
               </a>
             </div>
             <div>
-              <h3 className="mb-2 text-xs uppercase tracking-[0.2em] text-neutral-500">Socials</h3>
+              <h3 className="mb-2 text-xs uppercase tracking-[0.2em] text-neutral-500">
+                Socials
+              </h3>
               <div className="flex gap-6">
-                <a href="https://github.com/bilisumaeresso" target="_blank" rel="noreferrer" className="text-base text-white transition-colors hover:text-emerald-400">GitHub</a>
-                <a href="https://linkedin.com/in/bilisuma-eresso" target="_blank" rel="noreferrer" className="text-base text-white transition-colors hover:text-emerald-400">LinkedIn</a>
+                <a
+                  href="https://github.com/bilisumaeresso"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-base text-white transition-colors hover:text-emerald-400"
+                >
+                  GitHub
+                </a>
+                <a
+                  href="https://linkedin.com/in/bilisuma-eresso"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-base text-white transition-colors hover:text-emerald-400"
+                >
+                  LinkedIn
+                </a>
               </div>
             </div>
           </div>
@@ -89,7 +122,12 @@ const Contact = () => {
         >
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div className="flex flex-col gap-2">
-              <label htmlFor="name" className="text-sm font-medium text-neutral-400">Name</label>
+              <label
+                htmlFor="name"
+                className="text-sm font-medium text-neutral-400"
+              >
+                Name
+              </label>
               <input
                 id="name"
                 type="text"
@@ -98,13 +136,18 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 disabled={isSubmitting}
-                className="w-full rounded-lg border border-neutral-700 bg-neutral-950/60 px-3 py-2.5 text-white transition-colors focus:border-white focus:outline-none disabled:opacity-50"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950/60 px-3 py-2.5 text-white transition-colors focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 focus:outline-none disabled:opacity-50"
                 placeholder="John Doe"
               />
             </div>
 
             <div className="flex flex-col gap-2">
-              <label htmlFor="email" className="text-sm font-medium text-neutral-400">Email</label>
+              <label
+                htmlFor="email"
+                className="text-sm font-medium text-neutral-400"
+              >
+                Email
+              </label>
               <input
                 id="email"
                 type="email"
@@ -113,13 +156,18 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 disabled={isSubmitting}
-                className="w-full rounded-lg border border-neutral-700 bg-neutral-950/60 px-3 py-2.5 text-white transition-colors focus:border-white focus:outline-none disabled:opacity-50"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950/60 px-3 py-2.5 text-white transition-colors focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 focus:outline-none disabled:opacity-50"
                 placeholder="john@example.com"
               />
             </div>
 
             <div className="flex flex-col gap-2">
-              <label htmlFor="message" className="text-sm font-medium text-neutral-400">Message</label>
+              <label
+                htmlFor="message"
+                className="text-sm font-medium text-neutral-400"
+              >
+                Message
+              </label>
               <textarea
                 id="message"
                 name="message"
@@ -128,7 +176,7 @@ const Contact = () => {
                 required
                 rows="4"
                 disabled={isSubmitting}
-                className="w-full resize-none rounded-lg border border-neutral-700 bg-neutral-950/60 px-3 py-2.5 text-white transition-colors focus:border-white focus:outline-none disabled:opacity-50"
+                className="w-full resize-none rounded-lg border border-neutral-700 bg-neutral-950/60 px-3 py-2.5 text-white transition-colors focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 focus:outline-none disabled:opacity-50"
                 placeholder="Tell me about your project..."
               />
             </div>
@@ -139,7 +187,12 @@ const Contact = () => {
               className="group mt-3 flex w-full items-center justify-between rounded-xl bg-white px-5 py-3.5 text-black transition-all duration-200 hover:-translate-y-0.5 hover:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-70"
             >
               <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
-              <Send size={18} className={`transition-transform ${isSubmitting ? "animate-pulse" : "group-hover:translate-x-1"}`} />
+              <Send
+                size={18}
+                className={`transition-transform ${
+                  isSubmitting ? "animate-pulse" : "group-hover:translate-x-1"
+                }`}
+              />
             </button>
           </form>
         </motion.div>

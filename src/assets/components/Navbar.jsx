@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const links = [
   { to: "/#home", label: "Home", key: "home" },
   { to: "/#work", label: "Work", key: "work" },
+  { to: "/#about", label: "About", key: "about" },
   { to: "/#projects", label: "Projects", key: "projects" },
   { to: "/#contact", label: "Contact", key: "contact" },
 ];
@@ -40,7 +41,15 @@ const Navbar = () => {
 
   // Scroll-aware active section improves wayfinding in long pages.
   useEffect(() => {
-    const sectionIds = ["home", "work", "toolkit", "about", "experience", "projects", "contact"];
+    const sectionIds = [
+      "home",
+      "work",
+      "toolkit",
+      "about",
+      "experience",
+      "projects",
+      "contact",
+    ];
     const sections = sectionIds
       .map((id) => document.getElementById(id))
       .filter(Boolean);
@@ -110,13 +119,11 @@ const Navbar = () => {
                 <Link
                   key={to}
                   to={to}
-                  className={
-                    `px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
-                      activeSection === key
-                        ? "bg-neutral-800/80 text-white shadow-sm"
-                        : "text-neutral-400 hover:text-white hover:bg-neutral-800/40"
-                    }`
-                  }
+                  className={`px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+                    activeSection === key
+                      ? "bg-neutral-800/80 text-white shadow-sm"
+                      : "text-neutral-400 hover:text-white hover:bg-neutral-800/40"
+                  }`}
                 >
                   {label}
                 </Link>
@@ -165,11 +172,9 @@ const Navbar = () => {
                 >
                   <Link
                     to={to}
-                    className={
-                      `block text-4xl font-semibold tracking-tight py-4 border-b border-neutral-800 transition-colors ${
-                        activeSection === key ? "text-white" : "text-neutral-500"
-                      }`
-                    }
+                    className={`block text-4xl font-semibold tracking-tight py-4 border-b border-neutral-800 transition-colors ${
+                      activeSection === key ? "text-white" : "text-neutral-500"
+                    }`}
                   >
                     {label}
                   </Link>

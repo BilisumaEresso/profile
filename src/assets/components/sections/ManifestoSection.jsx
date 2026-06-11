@@ -13,20 +13,27 @@ const ManifestoSection = () => {
 
       <SectionReveal className="space-y-8 md:col-span-8">
         <p className="max-w-3xl text-2xl font-light leading-snug tracking-tight text-neutral-200 md:text-3xl">
-          My default approach is simple: make it fast, make it clear, then make it feel great.
+          My default approach is simple: make it fast, make it clear, then make
+          it feel great.
         </p>
 
         <div className="grid gap-7 pt-2 sm:grid-cols-2">
           <div className="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6">
-            <h3 className="text-lg font-semibold text-white">Engineering</h3>
+            <h3 className="text-lg font-semibold text-white">
+              Cross-platform mobile
+            </h3>
             <p className="mt-3 text-sm leading-relaxed text-neutral-400">
-              I prefer maintainable architecture, predictable data flow, and code that your future team can read in one pass.
+              React Native and Expo for iOS & Android, with offline-ready
+              architecture and optimized performance across devices.
             </p>
           </div>
           <div className="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6">
-            <h3 className="text-lg font-semibold text-white">Product thinking</h3>
+            <h3 className="text-lg font-semibold text-white">
+              Startup execution
+            </h3>
             <p className="mt-3 text-sm leading-relaxed text-neutral-400">
-              Before shipping UI, I focus on hierarchy and interaction details so users always know what to do next.
+              End-to-end ownership from architecture to deployment, currently
+              building OmishGO as sole technical founder.
             </p>
           </div>
         </div>
