@@ -68,6 +68,14 @@ const AboutPage = () => {
       githubUrl: "https://github.com/bilisumaeresso/EduLingua-FrontEnd",
     },
     {
+      title: "StudyHub",
+      description:
+        "A Telegram bot for student resources with indexed search and file archive. Automated cron jobs for content updates and indexing.",
+      tech: ["Node.js", "Telegraf", "MongoDB", "Cron Jobs"],
+      githubUrl: "https://github.com/bilisumaeresso/studyhub-bot",
+      liveUrl: "https://t.me/studyhub_resource_bot",
+    },
+    {
       title: "AI-Powered E-Commerce",
       description:
         "A MERN commerce app with JWT auth, Stripe checkout, and an admin dashboard for inventory and reporting.",
@@ -88,13 +96,6 @@ const AboutPage = () => {
         "A conversion-focused landing page for a construction firm with interactive visuals and polished transitions.",
       tech: ["React", "Tailwind CSS", "Framer Motion", "Three.js"],
       githubUrl: "https://github.com/bilisumaeresso/RE-front",
-    },
-    {
-      title: "StudyHub",
-      description:
-        "A Telegram bot for student resources with indexed search and file archive. Automated cron jobs for content updates and indexing.",
-      tech: ["Node.js", "Telegraf", "MongoDB", "Cron Jobs"],
-      githubUrl: "https://github.com/bilisumaeresso/studyhub-bot",
     },
   ];
 
